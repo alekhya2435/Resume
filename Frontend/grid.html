@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <title>Grid</title>
+         <style>                
+        .temp {
+            border: 2px solid black;
+            width: 50%;
+            /*margin-left: 35%;*/
+            margin-top: 5%;
+            padding: 10px;
+            background-color: rgb(29, 167, 189);
+        }
+          .form{
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            grid-gap: 10px;
+            
+        }
+        
+        button{
+            grid-column:span 2;
+            text-align:center;
+           
+        }
+        button:hover {
+            background:#13df46
+        }
+        </style>
+    </head>
+    <body>
+        <div class="temp">
+             <form class="form">
+                <label for="name">Full Name</label>
+            <input type="text" id="name" name="name">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email">
+
+                <label for="course selection">Course Selection</label>
+                <select id="course" name="course" required>
+                <option value="">-- Select a Course --</option>
+                <option value="ece">ECE</option>
+                <option value="eee">EEE</option>
+                <option value="civil">Civil</option>
+                </select>
+                 <label>Gender</label>
+            <div>
+                <label><input type="radio" name="gender" value="Male" required> Male</label>
+                <label><input type="radio" name="gender" value="Female"> Female</label>
+            </div>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirm-password">
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</body>
+</html>
+         
+       
+        
+       
