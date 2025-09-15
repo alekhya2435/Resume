@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple To-Do List</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body { 
+        font-family: Arial; 
+        margin: 20px;
+     }
+    li { 
+        margin: 5px 0;
+        padding: 5px;
+        background: #eee; 
+        border-radius: 4px;
+         } 
+    .done {  
+        text-decoration: line-through; 
+        color: gray; 
+    }
+  </style>
+</head>
+<body>
+
+  <h2>To-Do List</h2>
+  <input id="taskInput" type="text" placeholder="Enter a task">
+  <button id="addBtn">Add</button>
+  <ul id="taskList"></ul>
+
+  <script>
+    $(function(){
+      // Add task
+      $("#addBtn").click(function(){
+        let txt = $("#taskInput").val().trim();
+        if(txt){
+          $("#taskList").append(
+            `<li><span class="task">${txt}</span>
+             <button class="complete">✓</button>
+             <button class="delete">✕</button></li>`
+          );
+          $("#taskInput").val("");
+        }
+      });
+
+      // Complete
+      $(document).on("click", ".complete", function(){
+        $(this).parent().toggleClass("done");
+      });
+
+      // Delete
+      $(document).on("click", ".delete", function(){
+        $(this).parent().remove();
+      });
+
+      // Edit on double-click
+      $(document).on("dblclick", ".task", function(){
+        let span = $(this);
+        let input = $("<input type='text'>").val(span.text());
+        span.replaceWith(input);
+        input.focus();
+
+        function save(){
+          let val = input.val().trim() || span.text();
+          input.replaceWith(`<span class="task">${val}</span>`);
+        }
+
+        input.blur(save).keydown(e => { if(e.key==="Enter") save(); });
+      });
+    });
+  </script>
+
+</body>
+</html>
